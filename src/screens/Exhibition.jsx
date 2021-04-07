@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Route, useParams, useLocation } from 'react-router-dom';
 import { Pagination } from '@material-ui/lab';
-import { fetchExhibitions, fetchExhibitionsByType } from '../stores/exhibition'
+import { fetchExhibitions, fetchExhibitionsByType } from '../stores/exhibition';
 
 const Body = styled.div`
     margin: auto;

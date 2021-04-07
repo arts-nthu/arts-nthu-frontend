@@ -13,7 +13,7 @@ const Content = styled.section`
     flex-direction: column;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #f5f5f5;
+    color: #d7d7d7;
 `;
 
 function Login() {
