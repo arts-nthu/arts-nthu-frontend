@@ -1,0 +1,76 @@
+.about-faculty {
+    color: #d7d7d7;
+    font-weight: 300;
+}
+.page-faculty .tab {
+	list-style: none;
+	color: #fff;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin: 30px 0 100px 0;
+	cursor: pointer;
+	padding: 0;
+}
+
+.page-faculty .tab a {
+	border: 1px solid #fff;
+	text-align: center;
+	height: 50px;
+	width: 200px;
+	font-size: 20px;
+	line-height: 50px;
+	color: #d7d7d7;
+	text-decoration: none;
+}
+
+.page-faculty .tab a:hover {
+	color: black;
+	background: #d7d7d7;
+}
+
+.page-faculty .tab a:first-child {
+	border-radius: 50px 0 0 50px;
+}
+
+.page-faculty .tab a:last-child {
+	border-radius: 0 50px 50px 0;
+}
+
+.page-faculty h2 {
+	color: #ef9350;
+	font-size: 30px;
+	margin: 10px 0 10px;
+	text-align: center;
+}
+
+.page-faculty #block1:target {
+	padding-top: 100px;
+	margin-top: -100px;
+}
+
+.page-faculty #block2:target {
+	padding-top: 100px;
+	margin-top: -100px;
+}
+
+.page-faculty .people-card {
+	margin: 40px 0px;
+	color: #d7d7d7;
+	font-weight: 300;
+	letter-spacing: 1.8px;
+	font-size: 1.5rem;
+}
+
+.page-faculty .people-card .title {
+	font-size: 28px;
+	display: inline-block;
+}
+
+.page-faculty .people-card .subtitle {
+	font-size: 22px;
+	display: inline-block;
+}

@@ -1,0 +1,82 @@
+.about-music {
+    color: #d7d7d7;
+    font-size: 1.3rem;
+}
+
+.page-collect .tab {
+	list-style: none;
+	color: #fff;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin: 30px 0 100px 0;
+	cursor: pointer;
+	padding: 0;
+}
+
+.page-collect .tab a {
+	border: 1px solid #fff;
+	text-align: center;
+	height: 50px;
+	width: 200px;
+	font-size: 20px;
+	line-height: 50px;
+	color: white;
+	text-decoration: none;
+}
+
+.page-collect .tab a.active {
+	color: #231917;
+	background-color: #fff;
+}
+
+.page-collect .tab a:hover {
+	color: black;
+	background: white;
+}
+
+.page-collect .tab a:first-child {
+	border-radius: 50px 0 0 50px;
+}
+
+.page-collect .tab a:last-child {
+	border-radius: 0 50px 50px 0;
+}
+
+.page-collect p {
+	margin: 50px 0px;
+}
+
+.page-collect h2 {
+	color: #e65e5e;
+	font-size: 30px;
+	margin: 30px 0px;
+}
+
+.page-collect h3 {
+	color: #e65e5e;
+	font-size: 25px;
+	margin: 30px 0px;
+}
+
+.page-collect .news-card {
+	background: #231917;
+}
+
+.page-collect .news-card .news-card-img {
+	height: 200px;
+}
+
+.page-collect .news-card .news-card-text {
+	margin: 0;
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.page-collect .news-card .news-card-text:hover {
+	color: #ef9350;
+}
