@@ -14,27 +14,35 @@ const Block = styled.div`
 
 
 function Carousel(props) {
-    const [count, setCount] = useState(0);
-
-    useEffect(()=> {
-        console.log(count);
-        let id = setInterval(()=>{
-            if(count <= props.images.length) setCount(count => count+1);
-            else setCount(0);
-        }, 5000);
-        
-        return () => clearInterval(id)
-    }, [count])
 
     return (
-        <Block
-            style={{
-            background: `url('${props.images[count]}') no-repeat`,
-            backgroundSize: 'cover'
-            }}
-        >
-            {count}
-        </Block>
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                { props.images.map((data, key) => {
+                    return (
+                        <div className={key === 0 ? 'active carousel-item' : 'carousel-item'}>
+                            <Block
+                                style={{
+                                background: `url('${data}') no-repeat`,
+                                backgroundSize: 'cover'
+                                }}
+                            >
+                                
+                            </Block>
+                        </div>
+                    )
+                })}
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            
+        </div>
     )
 }
 

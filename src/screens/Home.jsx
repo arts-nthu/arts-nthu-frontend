@@ -16,8 +16,10 @@ const Subtitle = styled.h2`
 `;
 
 const Images = [
-    "https://i.imgur.com/oJ56sHe.jpg",
-    "https://i.imgur.com/LIKGhDY.jpg"
+    "https://i.imgur.com/zUgMs8j.jpg",
+    "https://i.imgur.com/cckyZ7M.jpg",
+    "https://i.imgur.com/wt88wrU.jpg",
+    "https://i.imgur.com/oJ56sHe.jpg"
 ]
 
 class Home extends React.Component {
