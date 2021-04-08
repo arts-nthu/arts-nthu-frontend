@@ -170,7 +170,7 @@ function Exhibition() {
 
                 <div class="event-waterfall">
                   <div className="row">
-                    { exhibitions.map((data, i) => {
+                    { exhibitions && exhibitions.map((data, i) => {
                       return (
                         <EventItem className="col">
                           <EventCard className="m-auto">

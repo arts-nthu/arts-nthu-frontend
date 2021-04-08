@@ -66,7 +66,7 @@ function LatestNews() {
       const res = await fetchNews(1, 9)
       res
         .json()
-        .then(res => setNews(res))
+        .then(res => setNews(res.data))
         .catch(err => setErrors(err));
     }
 
@@ -77,7 +77,7 @@ function LatestNews() {
 
     return (
         <div className="container">
-            { news.map((data, i)=> {
+            { news && news.map((data, i)=> {
                 return (
                     <div className="container">
                         <Block className="row m-auto">

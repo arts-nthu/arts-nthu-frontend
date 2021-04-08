@@ -78,7 +78,7 @@ function News() {
       const res = await fetchNews(1, 9)
       res
         .json()
-        .then(res => setNews(res))
+        .then(res => setNews(res.data))
         .catch(err => setErrors(err));
     }
     
@@ -109,7 +109,7 @@ function News() {
                   <Ch>最新消息</Ch>
                 </TopTitle>
 
-                { news.map((data, i)=> {
+                { news && news.map((data, i)=> {
                     return (
                         <div className="pb-4">
                             <Block className="row m-auto container">

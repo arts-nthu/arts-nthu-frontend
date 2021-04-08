@@ -12,7 +12,7 @@ function Calendar() {
 
     function rename(exhibitions) { // function to rename on button click
         let e
-        e = exhibitions.map(function(obj) {
+        e = exhibitions && exhibitions.map(function(obj) {
             obj['start'] = obj['start_date']; // Assign new key
             obj['end'] = obj['end_date']; // Assign new key
             delete obj['end_date']; // Delete old key

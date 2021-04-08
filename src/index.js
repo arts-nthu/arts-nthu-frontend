@@ -27,6 +27,7 @@ import Arts from './screens/about/Arts';
 import AdminDashboard from './screens/admin/Dashboard';
 import AdminExhibition from './screens/admin/Exhibition';
 import ExhibitionCreate from './screens/admin/ExhibitionCreate';
+import ExhibitionEdit from './screens/admin/ExhibitionEdit';
 
 
 
@@ -56,6 +57,7 @@ ReactDOM.render(
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/exhibitions" component={AdminExhibition} />
         <Route exact path="/admin/exhibitions/create" component={ExhibitionCreate} />
+        <Route path="/admin/exhibitions/edit/:id" component={ExhibitionEdit} />
 
 
 

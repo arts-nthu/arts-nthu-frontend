@@ -26,13 +26,13 @@ function AdminHeader() {
         if(currentUser) {
             return (
                 <div className="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <Link to="/profile" class="nav-link">
+                    <li className="nav-item">
+                        <Link to="/profile" className="nav-link">
                             {currentUser.username }
                         </Link>
                     </li>
-                    <li class="nav-item">
-                        <Link class="nav-link" onClick={handleLogout}>
+                    <li className="nav-item">
+                        <Link to="/admin/dashboard" className="nav-link" onClick={handleLogout}>
                             登出
                         </Link>
                     </li>
@@ -41,8 +41,8 @@ function AdminHeader() {
         } else {
             return (
                 <div className="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <Link to="/login" class="nav-link">
+                    <li className="nav-item">
+                        <Link to="/login" className="nav-link">
                             登入
                         </Link>
                     </li>
@@ -52,24 +52,25 @@ function AdminHeader() {
     }
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: '#231917', color: 'white', height: '80' + 'px'}}>
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        
+        <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: '#231917', color: 'white', height: '80' + 'px'}}>
+            <div className="container-fluid">
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
                 </button>
                 <Link className="navbar-brand brand" to="/admin/dashboard">
                     清華大學藝術中心後台
                 </Link>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
 
                 <div className="navbar-nav">
-                    <li class="nav-item">
-                        <Link to="/admin/exhibitions" class="nav-link">
+                    <li className="nav-item">
+                        <Link to="/admin/exhibitions" className="nav-link">
                             展覽
                         </Link>
                     </li>
-                    <li class="nav-item">
-                        <Link to="/admin/exhibitions" class="nav-link">
+                    <li className="nav-item">
+                        <Link to="/admin/exhibitions" className="nav-link">
                             公告
                         </Link>
                     </li>

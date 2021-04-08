@@ -93,11 +93,6 @@ function ExhibitionDetails() {
     const [hasError, setErrors] = useState(false);
     const [exhibition, setExhibition] = useState([]);
 
-    useEffect(() => {
-    
-        
-    }, []);
-
     async function fetchData() {
         const res = await fetchExhibitionByID(id);
         res

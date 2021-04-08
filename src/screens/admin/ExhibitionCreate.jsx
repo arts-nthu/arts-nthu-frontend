@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { getCurrentUser } from '../../stores/user';
+import { getCurrentUser, logout } from '../../stores/user';
 import { createExhibition } from '../../stores/exhibition';
 import { Alert } from '@material-ui/lab';
 import { useHistory } from "react-router-dom";
@@ -18,12 +18,19 @@ function ExhibitionCreate() {
             console.log(data);
             let res = await createExhibition(data);
             console.log(res)
-            history.push("/admin/dashboard");
+            history.push("/admin/exhibitions");
             window.location.reload();
             
         } catch(err) {
-            console.log(err)
-            setMessage("Create Error");
+            if(err.response.status === 401) {
+                setMessage("閒置太久，請重新登入")
+                setTimeout(()=>{
+                    logout();
+                    history.push("/login");
+                    window.location.reload();
+                }, 5000);
+                
+            }
         }
     }
     console.log(errors);
@@ -32,8 +39,8 @@ function ExhibitionCreate() {
     return (
         <>
             {message && (
-                    <Alert severity="error">{message}</Alert>
-                )}
+                <Alert severity="error">{message}</Alert>
+            )}
             <Layout>
                 <div className="container col-lg-6">                
                     <form onSubmit={handleSubmit(onSubmit)}>

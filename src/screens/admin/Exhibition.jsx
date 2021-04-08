@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../common/AdminLayout';
 import Header from '../../common/AdminHeader';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-import { fetchExhibitions, fetchExhibitionsByType } from '../../stores/exhibition';
-import { getCurrentUser } from '../../stores/user';
+import { deleteExhibition, fetchExhibitions, fetchExhibitionsByType } from '../../stores/exhibition';
+import { getCurrentUser, logout } from '../../stores/user';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,11 +19,15 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
+import { Alert } from '@material-ui/lab';
+
 function Exhibition() {
+    let history = useHistory();
     const [exhibitions, setExhibitions] = useState([]);
     const [hasError, setErrors] = useState(false);
     const [page, setPage] = useState(1);
     const [maxSize, setMaxSize] = useState(1);
+    const [message, setMessage] = useState("");
     const [currentUser, setCurrentUser] = useState(undefined);
 
     async function fetchData() {
@@ -35,6 +39,33 @@ function Exhibition() {
             setExhibitions(res.data)
           })
           .catch(err => setErrors(err));
+    }
+
+    async function handleDelete(id) {
+        try {
+            let isDel = window.confirm("刪除?");
+            console.log(isDel)
+            if(!isDel) return;
+            await deleteExhibition(id);
+            
+            setMessage("刪除成功");
+            window.location.reload();
+        } catch(err) {
+            if(err.response.status === 401) {
+                setMessage("閒置太久，請重新登入")
+                setTimeout(()=>{
+                    logout();
+                    history.push("/login");
+                    window.location.reload();
+                }, 5000);
+                
+            }
+        }
+    }
+
+    function handleEdit(id) {
+        history.push(`/admin/exhibitions/edit/${id}`);
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -51,6 +82,9 @@ function Exhibition() {
   return (
     <Layout>
         <Header></Header>
+        {message && (
+                    <Alert severity="error">{message}</Alert>
+                )}
         <div className="container-fluid">
             <div className="d-flex mb-3">
                 <h2>展覽</h2>
@@ -83,7 +117,7 @@ function Exhibition() {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {exhibitions.map((exhibition) => (
+                    { exhibitions && exhibitions.map((exhibition) => (
                         <TableRow key={exhibition.name}>
                         <TableCell component="th" scope="row">
                             {exhibition.title}
@@ -98,12 +132,14 @@ function Exhibition() {
                                         color="default"
                                         className="mr-2"
                                         startIcon={<EditIcon />}
+                                        onClick={() => {handleEdit(exhibition.id)}}
                                     >修改
                                     </Button>
                                     <Button
                                         variant="contained"
                                         color="secondary"
                                         startIcon={<DeleteIcon />}
+                                        onClick={() => { handleDelete(exhibition.id)}}
                                     >刪除
                                     </Button>
                                 </TableCell>
