@@ -107,4 +107,4 @@ function LatestNews() {
     )
 }
 
-export default LatestNews
+export default LatestNews;

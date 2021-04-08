@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
 const Block = styled.div`
@@ -12,62 +12,30 @@ const Block = styled.div`
     align-items: center;
 `;
 
-const LetterBlock = styled.div`
-    height: 250px;
-    padding: 20px 50px;
-`;
 
-const Title = styled.h2`
-    font-size: 30px;
-    letter-spacing: 3px;
-    padding-bottom: 15px;
-    color: white;
-`;
+function Carousel(props) {
+    const [count, setCount] = useState(0);
 
-const Card = styled.div`
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    &:hover {
-        color: #1DBF21;
-    }
-`;
-const CardTitle = styled.h2`
-    font-size: 25px;
-    letter-spacing: 3px;
-`;
+    useEffect(()=> {
+        console.log(count);
+        let id = setInterval(()=>{
+            if(count <= props.images.length) setCount(count => count+1);
+            else setCount(0);
+        }, 5000);
+        
+        return () => clearInterval(id)
+    }, [count])
 
-const data = [
-    {
-        "title": "找問題",
-        "icon": "question_answer",
-        "url": "/articles"
-    },
-    {
-        "title": "問問題",
-        "icon": "help_outline",
-        "url": "/articles"
-    },
-    {
-        "title": "看問題",
-        "icon": "record_voice_over",
-        "url": "/comments"
-    }
-]
-class Introduction extends React.Component {
-    render() {
-        return (
-            <Block
-              
-              ref={cover => (this.cover = cover)}
-              style={{
-                background: `url('${this.props.images[0]}') no-repeat`,
-                backgroundSize: 'cover'
-              }}
-            >
-              { this.props.children }
-            </Block>
-        )
-    }
+    return (
+        <Block
+            style={{
+            background: `url('${props.images[count]}') no-repeat`,
+            backgroundSize: 'cover'
+            }}
+        >
+            {count}
+        </Block>
+    )
 }
 
-export default Introduction
+export default Carousel;

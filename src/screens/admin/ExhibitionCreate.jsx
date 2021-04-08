@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { getCurrentUser } from '../../stores/user';
+import { createExhibition } from '../../stores/exhibition';
 import { Alert } from '@material-ui/lab';
 import { useHistory } from "react-router-dom";
 
@@ -15,11 +16,14 @@ function ExhibitionCreate() {
         try {
             setMessage("");
             console.log(data);
-            //history.push("/admin/dashboard");
-            //window.location.reload();
+            let res = await createExhibition(data);
+            console.log(res)
+            history.push("/admin/dashboard");
+            window.location.reload();
             
         } catch(err) {
-            setMessage("Login Error");
+            console.log(err)
+            setMessage("Create Error");
         }
     }
     console.log(errors);
@@ -65,8 +69,11 @@ function ExhibitionCreate() {
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">封面照片</label>
-                            <input class="form-control" type="text" placeholder="cover" {...register("cover", {required: true})} />
+                            <input class="form-control" type="text" placeholder="cover" 
+                                {...register("cover", {required: true, pattern: /https:\/\/i.imgur.com/})} />
+                            <div class="form-text" style={{color: '#d7d7d7'}}>格式：https://i.imgur.com/xxxxx</div>
                             {errors.cover && errors.cover.type == "required" && <Alert severity="error">未填封面照片</Alert>}
+                            {errors.cover && errors.cover.type == "pattern" && <Alert severity="error">封面照片格式錯誤</Alert>}
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">開始日期</label>
@@ -82,6 +89,11 @@ function ExhibitionCreate() {
                             <label for="title" class="form-label">主辦</label>
                             <input class="form-control" type="text" placeholder="host" {...register("host", {required: true})} />
                             {errors.host && errors.host.type == "required" && <Alert severity="error">未填主辦</Alert>}
+                        </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">地點</label>
+                            <input class="form-control" type="text" placeholder="location" {...register("location", {required: true})} />
+                            {errors.location && errors.location.type == "required" && <Alert severity="error">未填地點</Alert>}
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">開始時間</label>
