@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../../common/Layout';
 import ReactMarkdown from 'react-markdown';
+import { HashLink } from 'react-router-hash-link';
 
 import './Faculty.css'
 
 
-function Faculty() {
 
+function Faculty() {
+    const scrollWidthOffset = (el) => {
+        const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+        const yOffset = -90;
+        window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth'});
+    }
     return (
         <Layout>
             <div className="row about-faculty">
@@ -28,10 +34,10 @@ function Faculty() {
 
             <div class="page-faculty container">
                 <ul class="tab">
-                    <a href="#block1">中心主任</a>
-                    <a href="#block2">企劃與執行</a>
+                    <HashLink smooth to="#block1" scroll={el => scrollWidthOffset(el)}>中心主任</HashLink>
+                    <HashLink smooth to="#block2" scroll={el => scrollWidthOffset(el)}>企劃與執行</HashLink>
                 </ul>
-                <div id="block1">ß
+                <div id="block1">
                     <h2 id="中心主任">中心主任</h2>
                     <div class="people-card">
                         <div class="title">邱誌勇</div>

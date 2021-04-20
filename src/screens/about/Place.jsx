@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import Layout from '../../common/Layout';
 import ReactMarkdown from 'react-markdown';
 
+import { Route, useParams, useLocation } from 'react-router-dom';
+
 import './Place.css'
+import { WindowScrollController } from '@fullcalendar/common';
 
 const data = {
     "img_url_1": "https://i.imgur.com/l4iez1ah.png",
@@ -29,7 +32,7 @@ function RenderPlace(prop) {
                 </div>
                 <div class="col-lg-6"> 
                     <ReactMarkdown>{ data.zyxel.content_1 }</ReactMarkdown>
-                    <a href="https://i.imgur.com/49tQndIh.jpg" class="btn">合勤演藝廳平面圖</a>
+                    <a href="https://i.imgur.com/49tQndI.jpg" class="btn">合勤演藝廳平面圖</a>
                     <h3>使用與收費標準</h3>
                     <a href="https://drive.google.com/open?id=1ugU5Lp7wP-dPt38yQ_yweQG5fOMHgMqc" class="btn">管理要點</a>
                     <a href="https://drive.google.com/open?id=1B2N_UyBq_WRIgFq0ndJtkWUePdhoGxtf" class="btn">收費標準</a>
@@ -53,8 +56,8 @@ function RenderPlace(prop) {
 
                     <ReactMarkdown>{ data.content_1 }</ReactMarkdown>
 
-                    <a href="https://i.imgur.com/iRlkg8vh.jpg" class="btn">查看平面圖一</a>
-                    <a href="https://i.imgur.com/AAgdoD1h.jpg" class="btn">查看平面圖二</a>
+                    <a href="https://i.imgur.com/iRlkg8v.jpg" class="btn">查看平面圖一</a>
+                    <a href="https://i.imgur.com/AAgdoD1.jpg" class="btn">查看平面圖二</a>
 
                     <ReactMarkdown>{ data.content_2 }</ReactMarkdown>
 
@@ -85,14 +88,23 @@ function RenderPlace(prop) {
 }
 
 function Place() {
-    
+    const { type } = useParams();
     const [active, setActive] = useState(0);
+    
     const handleClick = e => {
         const index = parseInt(e.target.id, 0);
         if (index !== active) {
         setActive(index);
         }
     };
+
+    useEffect(() => {
+        if(type == "zyxel") setActive(0);
+        else if(type == "hall") setActive(1);
+        else if(type == "workshop") setActive(2);
+
+        window.scrollTo({top: 0, behavior: 'smooth'})
+    }, [type])
 
     return (
         <Layout>
@@ -111,11 +123,11 @@ function Place() {
                     </div>
 
                     <div class="page-place container-fluid">
-
+                        
                         <ul class="tab">
-                            <a onClick={handleClick} active={active === 0} id={0}>合勤演藝廳</a>
-                            <a onClick={handleClick} active={active === 1} id={1}>藝中展演廳</a>
-                            <a onClick={handleClick} active={active === 2} id={2}>藝術工坊</a>
+                            <a onClick={handleClick} active={active == 0} id={0}>合勤演藝廳</a>
+                            <a onClick={handleClick} active={active == 1} id={1}>藝中展演廳</a>
+                            <a onClick={handleClick} active={active == 2} id={2}>藝術工坊</a>
                         </ul>
 
                         <RenderPlace type={active}></RenderPlace>

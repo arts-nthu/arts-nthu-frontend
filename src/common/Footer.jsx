@@ -66,13 +66,15 @@ function Footer() {
                                 </div>
                                 <div class="row quick-link">
                                     <div class="col-12 col-lg-4 link-group">
-                                        <a href="/calendar/" class="links">{ data.footer_calendar }</a>
-                                        <a href="/about/place" class="links">{ data.footer_zyxel }</a>
-                                        <a href="/about/place" class="links">
-                                            { data.footer_exhibition_hall }</a>
-                                        <a href=""class="links">
-                                            { data.footer_art_workshop }</a>
-                                        <a href="/about/logo" class="links">藝術中心識別標誌</a>
+                                        <Link to="/calendar/" class="links">{ data.footer_calendar }</Link>
+                                        <Link to="/about/place/zyxel" class="links">{ data.footer_zyxel }</Link>
+                                        <Link to="/about/place/hall" class="links">
+                                            { data.footer_exhibition_hall }
+                                        </Link>
+                                        <Link to="/about/place/workshop"class="links">
+                                            { data.footer_art_workshop }
+                                        </Link>
+                                        <Link to="https://arts-nthu.netlify.app/about/logo" class="links">藝術中心識別標誌</Link>
                                     </div>
                                     <div class="col-12 col-lg-4 link-group">
                                         <a href="https://drive.google.com/drive/folders/1baNQnSnU9uYTDUBF-_YIczKccZERbWKm?usp=sharing" class="links" target="_blank">

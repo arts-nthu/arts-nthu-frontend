@@ -25,10 +25,17 @@ const Block = styled.div`
     background-size: cover;
     background-image: linear-gradient(0deg, rgba(36, 44, 51, 0.5), rgba(36, 44, 51, 0.5));
     align-items: center;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const PropertyBlock = styled.div`
     padding: 3vh;
+    @media (max-width: 768px) {
+        padding: 0px;
+    }
     
 `;
 
@@ -36,7 +43,10 @@ const RightBody = styled.div`
     margin: auto;
     color: #d8d8d8;
     margin-top: 5vh;
-    padding-left: 30px;
+    padding: 0 30px;
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 const Date = styled.div`
@@ -103,7 +113,7 @@ function ExhibitionDetails() {
     
     useEffect(() => {
         fetchData();
-    }, {});
+    }, [id]);
 
     function TypeRender(props) {
         if(props.type == "visual_art") {

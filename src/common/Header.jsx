@@ -20,17 +20,18 @@ class Header extends React.Component {
         return (
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top menu" style={{ background: '#231917', color: 'white', height: '80' + 'px' }}>
                 <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <Link className="navbar-brand brand" to="/">
                         <img src={logo} alt="" className="pic" />
                         <div class="content ml-2">
                             <div className="ch">國立清華大學清華學院藝術中心</div>
-                            <div className="en">ARTS CENTER,TSING HUA COLLEGE, NTHU</div>
+                            <div className="en">ARTS CENTER, NTHU</div>
                         </div>
                     </Link>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style={{background: '#231917'}}>
 
                         <ul class="navbar-nav mb-2 mb-lg-0 mr-2 m-auto">
                             <li class="nav-item dropdown">
@@ -61,7 +62,7 @@ class Header extends React.Component {
                                             <div>Faculty</div>
                                         </SearchDiv>
                                     </Link>
-                                    <Link className="dropdown-item sub-item" to="/about/place">
+                                    <Link className="dropdown-item sub-item" to="/about/place/zyxel">
                                         <SearchDiv>
                                             <div>展演場地</div>
                                             <div>Exhibition</div>
@@ -97,32 +98,32 @@ class Header extends React.Component {
                                 </a>
                                 <div class="dropdown-menu submenu" >
 
-                                    <Link className="dropdown-item sub-item" to="/exhibitions?type=visual_art">
+                                    <Link className="dropdown-item sub-item" to="/exhibitions/type/visual_art">
                                         <SearchDiv>
                                             <div>視覺藝術</div>
                                             <div>Visual Art</div>
                                         </SearchDiv>
                                     </Link>
-                                    <Link className="dropdown-item sub-item" to="/exhibitions?type=performing_art">
+                                    <Link className="dropdown-item sub-item" to="/exhibitions/type/performing_art">
                                         <SearchDiv>
                                             <div>表演藝術</div>
                                             <div>Performing Art</div>
                                         </SearchDiv>
                                     </Link>
-                                    <Link className="dropdown-item sub-item" to="/exhibitions?type=film_art">
+                                    <Link className="dropdown-item sub-item" to="/exhibitions/type/film_art">
                                         <SearchDiv>
                                             <div>電影藝術</div>
                                             <div>Film Art</div>
                                         </SearchDiv>
                                     </Link>
-                                    <Link className="dropdown-item sub-item" to="/exhibitions?type=public_art">
+                                    <Link className="dropdown-item sub-item" to="/exhibitions/type/public_art">
                                         <SearchDiv>
                                             <div>公共藝術</div>
                                             <div>Public Art</div>
                                         </SearchDiv>
                                     </Link>
 
-                                    <Link className="dropdown-item sub-item" to="/exhibitions?type=ai_music">
+                                    <Link className="dropdown-item sub-item" to="/exhibitions/type/ai_music">
                                         <SearchDiv>
                                             <div>AI樂團</div>
                                             <div>AI Music</div>

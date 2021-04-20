@@ -4,10 +4,11 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 
 import Home from './screens/Home';
 import Login from './screens/Login';
+import NotFound from './screens/NotFound';
 
 import ExhibitionDetails from './screens/ExhibitionDetails';
 import Exhibition from './screens/Exhibition';
@@ -34,13 +35,14 @@ import ExhibitionEdit from './screens/admin/ExhibitionEdit';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         
+        <Route path="/exhibitions/type/:type" component={Exhibition} />
         <Route path="/exhibitions/:id" component={ExhibitionDetails} />
-        <Route exact path="/exhibitions" component={Exhibition} />
+        
         <Route path="/news/:id" component={NewsDetails} />
         <Route exact path="/news" component={News} />
         <Route exact path="/comments" component={Comment} />
@@ -50,7 +52,7 @@ ReactDOM.render(
         <Route exact path="/about/history" component={History} />
         <Route exact path="/about/activity" component={Activity} />
         <Route exact path="/about/faculty" component={Faculty} />
-        <Route exact path="/about/place" component={Place} />
+        <Route exact path="/about/place/:type" component={Place} />
         <Route exact path="/about/music" component={Music} />
         <Route exact path="/about/arts" component={Arts} />
 
@@ -58,13 +60,14 @@ ReactDOM.render(
         <Route exact path="/admin/exhibitions" component={AdminExhibition} />
         <Route exact path="/admin/exhibitions/create" component={ExhibitionCreate} />
         <Route path="/admin/exhibitions/edit/:id" component={ExhibitionEdit} />
+        <Route path="*" component={NotFound}/>
 
 
 
 
 
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

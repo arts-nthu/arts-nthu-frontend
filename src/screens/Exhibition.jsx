@@ -87,14 +87,10 @@ const EventSubtitle = styled.div`
   color: #ef9350;
 `;
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 function Exhibition() {
-    let query = useQuery();
-    let type = query.get("type");
+    const { type } = useParams();
     const [hasError, setErrors] = useState(false);
+    const [ currentType , setCurrentType ] = useState("");
     const [exhibitions, setExhibitions] = useState([]);
     const [page, setPage] = useState(1);
     const [maxSize, setMaxSize] = useState(1);
@@ -128,12 +124,15 @@ function Exhibition() {
     }
     
     useEffect(() => {
-      if( type == "visual_art" || type == "public_art" || type == "performing_art" || type == "film_art" || type == "ai_music")
+      if( type != currentType || type == "visual_art" || type == "public_art" || type == "performing_art" || type == "film_art" || type == "ai_music"){
         fetchDataByType(type)
-      else 
+      }
+      else{
         fetchData();
+      }
+      setCurrentType(type)
 
-    }, []);
+    }, [type]);
     
     console.log(`URL: ${process.env.PUBLIC_URL}`)
 
@@ -160,11 +159,11 @@ function Exhibition() {
                 </TopTitle>
                 <EventTag>
                   <TagGroup>
-                    <a className="tag-link" href="/exhibitions?type=visual_art">視覺藝術</a>
-                    <a className="tag-link" href="/exhibitions?type=performing_art">表演藝術</a>
-                    <a className="tag-link" href="/exhibitions?type=film_art">電影藝術</a>
-                    <a className="tag-link" href="/exhibitions?type=public_art">公共藝術</a>
-                    <a className="tag-link" href="/exhibitions?type=ai_music">AI樂團</a>
+                    <Link className="tag-link" to="/exhibitions/type/visual_art"      >視覺藝術</Link>
+                    <Link className="tag-link" to="/exhibitions/type/performing_art"  >表演藝術</Link>
+                    <Link className="tag-link" to="/exhibitions/type/film_art"        >電影藝術</Link>
+                    <Link className="tag-link" to="/exhibitions/type/public_art"      >公共藝術</Link>
+                    <Link className="tag-link" to="/exhibitions/type/ai_music"        >AI樂團</Link>
                   </TagGroup>
                 </EventTag>
 
