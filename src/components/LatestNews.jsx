@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Layout from '../common/Layout';
 import { Link } from 'react-router-dom';
 
 import { Route, useParams, useLocation } from 'react-router-dom';
 
 import { fetchNews } from '../stores/news';
+
+const Body = styled.div`
+    margin: auto;
+    color: #d8d8d8;
+`;
 
 const Block = styled.div`
     color: #d7d7d7;
@@ -45,16 +51,6 @@ const MoreText = styled.div`
     }
 `;
 
-function TypeRender(props) {
-    if(props.type == "information") {
-        return "通知"
-    }
-    else if(props.type == "exhibition") {
-        return "展覽"
-    }
-    else return ""
-}
-
 function LatestNews() {
 
     const [hasError, setErrors] = useState(false);
@@ -63,48 +59,70 @@ function LatestNews() {
     
 
     async function fetchData() {
-      const res = await fetchNews(1, 9)
+      const res = await fetchNews(1, 6)
       res
         .json()
-        .then(res => setNews(res.data))
-        .catch(err => setErrors(err));
+        .then(res => {
+            console.log(res)
+            setNews(res)
+        })
+        .catch(err => {
+            console.log(err)
+            setErrors(err)
+        });
+    }
+
+    function TypeRender(props) {
+        if(props.type == "information") {
+            return "通知"
+        }
+        else if(props.type == "exhibition") {
+            return "展覽"
+        }
+        else return ""
     }
 
     useEffect(() => {
           fetchData();
-      }, []);
+    }, []);
 
+    if(hasError){
+        return (
+            <div>No Data</div>
+        )
+      }
+    else
+        return (
+            <div className="container">
+                { news && news.map((data, i)=> {
+                    return (
+                        <div className="container">
+                           
+                            <Block className="row m-auto">
+                                <Type className="col-lg-1 col-md-2 col-3">
+                                    <TypeRender type={ data.type }></TypeRender>
+                                </Type>
+                                <Date className="col-lg-2 col-md-3 col-6">{ data.start_date }</Date>
+                                <Title className="col-lg-9 col-md-7 col-12">
+                                    <Link to={"/news/" + data.id } class="router-link">
+                                            { data.title }
+                                    </Link> 
+                                </Title>
+                            </Block>
+                        </div>
+                    )
+                })}
 
-    return (
-        <div className="container">
-            { news && news.map((data, i)=> {
-                return (
-                    <div className="container">
-                        <Block className="row m-auto">
-                            <Type className="col-lg-1 col-md-2 col-3">
-                                <TypeRender type={ data.type }></TypeRender>
-                            </Type>
-                            <Date className="col-lg-2 col-md-3 col-6">{ data.start_date }</Date>
-                            <Title className="col-lg-9 col-md-7 col-12">
-                                <Link to={"/news/" + data.id } class="router-link">
-                                        { data.title }
-                                </Link> 
-                            </Title>
-                        </Block>
-                    </div>
-                )
-            })}
+                <More>
+                    <Link to="/news" class="router-link">
+                        <MoreText>更多消息</MoreText>
+                    </Link> 
+                </More>
 
-            <More>
-                <Link to="/news" class="router-link">
-                    <MoreText>更多消息</MoreText>
-                </Link> 
-            </More>
-
-            
-            
-        </div>
-    )
+                
+                
+            </div>
+        )
 }
 
 export default LatestNews;

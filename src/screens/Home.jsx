@@ -31,7 +31,7 @@ class Home extends React.Component {
                     <div className="row">
                         <div className="col-12">
 
-                            {/*
+                            
                             <div class="page-title container m-auto pt-5 pb-5">
                                 <div class="page-title-text" style={{top: "-30" + 'px'}}>
                                     <div class="en">Latest News</div>
@@ -45,7 +45,7 @@ class Home extends React.Component {
                             </div>
 
                             <LatestNews></LatestNews>
-                            */}
+                            
 
                             <div class="page-title container m-auto pt-5 pb-5">
                                 <div class="page-title-text" style={{top: "-30" + 'px'}}>
